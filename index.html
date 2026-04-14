@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>启创广告 - 专业海外主流媒体广告开户服务 | Google, Facebook, TikTok</title>
+    <meta name="description" content="为您提供专业、快捷的海外广告开户服务，支持Google、Facebook, TikTok, Bing, Twitter等主流平台企业账户。">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome for Brand Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb', // Blue-600
+                        secondary: '#1e40af', // Blue-800
+                    },
+                    lineHeight: {
+                        'loose-custom': '1.8',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .hero-bg {
+            background-image: url('https://i.postimg.cc/QMcc2Xnj/DM-20260321120314-001.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-attachment: scroll;
+            }
+        }
+        .case-card img {
+            transition: transform 0.5s ease;
+        }
+        .case-card:hover img {
+            transform: scale(1.05);
+        }
+        /* Floating Toolbar Styles */
+        .side-toolbar {
+            position: fixed;
+            right: 20px;
+            bottom: 100px;
+            z-index: 99;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .toolbar-item {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .toolbar-item:hover {
+            transform: translateY(-3px);
+            background: #2563eb;
+            color: white;
+        }
+        .toolbar-item:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            right: 60px;
+        }
+        .tooltip {
+            position: absolute;
+            right: 70px;
+            background: #333;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-left: 5px solid #333;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased bg-gray-50 overflow-x-hidden">
+
+    <!-- Floating Sidebar Toolbar -->
+    <div class="side-toolbar hidden md:flex">
+        <!-- Telegram Contact -->
+        <a href="https://t.me/qichuangads" target="_blank" class="toolbar-item text-primary animate-pulse-slow">
+            <i class="fab fa-telegram-plane text-2xl"></i>
+            <span class="tooltip shadow-lg">联系顾问</span>
+        </a>
+        <!-- Back to Top -->
+        <div onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="toolbar-item text-gray-500" id="backToTop">
+            <i class="fas fa-chevron-up"></i>
+            <span class="tooltip shadow-lg">返回顶部</span>
+        </div>
+    </div>
+
+    <!-- Mobile Sticky Contact Bar (Optional for better UX) -->
+    <div class="md:hidden fixed bottom-6 right-6 z-50">
+        <a href="https://t.me/qichuangads" target="_blank" class="w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center animate-bounce">
+            <i class="fab fa-telegram-plane text-2xl"></i>
+        </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white shadow-md" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 md:gap-3">
+                    <img class="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover border-2 border-primary/20 shadow-sm" src="https://i.postimg.cc/V6xQdWWr/photo-2026-01-16-14-57-36.jpg" alt="启创广告 Logo">
+                    <div class="flex flex-col">
+                        <span class="font-bold text-lg md:text-xl tracking-tight text-gray-900 leading-none">启创广告</span>
+                        <span class="hidden md:inline text-xs font-normal text-gray-500 mt-1">专业出海营销服务</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-primary font-medium transition-colors">首页</a>
+                    <a href="#services" class="text-gray-600 hover:text-primary font-medium transition-colors">支持平台</a>
+                    <a href="#why-us" class="text-gray-600 hover:text-primary font-medium transition-colors">优势</a>
+                    <a href="#cases" class="text-gray-600 hover:text-primary font-medium transition-colors">案例</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition-colors">常见问题</a>
+                    <a href="https://t.me/qichuangads" target="_blank" class="bg-primary hover:bg-secondary text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-lg shadow-primary/30 flex items-center gap-2">
+                        <i class="fab fa-telegram-plane"></i> 立即咨询
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-gray-900 focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">首页</a>
+                <a href="#services" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">支持平台</a>
+                <a href="#why-us" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">选择我们</a>
+                <a href="#cases" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">案例展示</a>
+                <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">常见问题</a>
+                <a href="https://t.me/qichuangads" target="_blank" class="block mt-4 text-center bg-primary text-white px-3 py-3 rounded-md font-medium">
+                    <i class="fab fa-telegram-plane mr-2"></i> 联系客服
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-16 h-[450px] md:h-[600px] flex items-center hero-bg overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-gray-900/60"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-4xl">
+                <span class="inline-block py-1 px-3 rounded-full bg-primary/20 text-blue-300 border border-primary/30 text-[10px] md:text-sm font-semibold tracking-wider mb-4 md:mb-6">
+                    出海营销第一站
+                </span>
+                <!-- 标题行间距 2cm -->
+                <h1 class="text-2xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.2cm] md:leading-[2cm] mb-6 md:mb-8">
+                    一站式海外主流媒体<br><span class="text-blue-400">广告开户与咨询服务</span>
+                </h1>
+                <p class="text-sm md:text-lg text-gray-300 mb-6 md:mb-8 leading-relaxed max-w-2xl">
+                    提供 Google, Facebook, TikTok, Bing, X (Twitter) 等优质企业广告账户。合规稳定，下户快捷，助力出海增长。
+                </p>
+                <div class="flex flex-col sm:flex-row gap-3 md:gap-4">
+                    <a href="https://t.me/qichuangads" target="_blank" class="bg-primary hover:bg-secondary text-white text-center px-8 md:px-10 py-3 md:py-3.5 rounded-full font-bold text-base md:text-lg transition-all shadow-lg shadow-primary/40 flex items-center justify-center gap-2">
+                        <i class="fab fa-telegram text-lg md:text-xl"></i> 立即咨询
+                    </a>
+                    <a href="#services" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 text-white text-center px-8 md:px-10 py-3 md:py-3.5 rounded-full font-medium text-base md:text-lg transition-all">
+                        支持平台
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-12 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="text-2xl md:text-4xl font-bold text-gray-900 mb-4">全平台企业账户支持</h2>
+                <div class="w-16 md:w-20 h-1 bg-primary mx-auto rounded-full mb-4"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto text-base md:text-lg">提供高权重、防封能力更强的企业级代理账户。</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Google -->
+                <div class="bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-100 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-white rounded-xl shadow-sm flex items-center justify-center mb-4 md:mb-6 text-2xl md:text-3xl text-[#4285F4]">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Google Ads 开户</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">支持搜索、展示及YouTube推广。提供高信誉度企业账单户。</p>
+                </div>
+
+                <!-- Facebook -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-white rounded-xl shadow-sm flex items-center justify-center mb-4 md:mb-6 text-2xl md:text-3xl text-[#1877F2]">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Facebook 代理户</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">高额度企业户，抗封能力强，下户快速，支持余额平移。</p>
+                </div>
+
+                <!-- TikTok -->
+                <div class="bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-100 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-white rounded-xl shadow-sm flex items-center justify-center mb-4 md:mb-6 text-2xl md:text-3xl text-black">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">TikTok 营销</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">抢占短视频红利。提供全量国家白名单账户，下户极速。</p>
+                </div>
+
+                <!-- Bing -->
+                <div class="bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-100 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-white rounded-xl shadow-sm flex items-center justify-center mb-4 md:mb-6 text-2xl md:text-3xl text-[#008373]">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Bing (微软广告)</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">触达高净值用户。B2B外贸企业优选，ROI回报率高。</p>
+                </div>
+
+                <!-- Twitter (X) -->
+                <div class="bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-100 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-white rounded-xl shadow-sm flex items-center justify-center mb-4 md:mb-6 text-black overflow-hidden">
+                        <img src="https://i.postimg.cc/DfGdsPcT/DM-20250816120937-001.png" alt="[X 广告图标]" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">X (Twitter) 广告</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">适合Web3、游戏及品牌。提供官方账户，支持热点话题营销。</p>
+                </div>
+
+                <!-- Others -->
+                <div class="bg-gradient-to-br from-primary to-secondary rounded-2xl p-6 md:p-8 text-white flex flex-col justify-center text-center">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">更多平台支持</h3>
+                    <p class="text-blue-100 text-xs md:text-sm mb-4">Pinterest, Snapchat, Kwai 等。</p>
+                    <a href="https://t.me/qichuangads" target="_blank" class="bg-white text-primary px-6 py-2 rounded-full font-bold text-sm mx-auto transition-transform hover:scale-105 shadow-sm">立即联系</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-us" class="py-12 md:py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="text-2xl md:text-4xl font-bold text-gray-900 mb-4">为什么选择我们</h2>
+                <div class="w-16 md:w-20 h-1 bg-primary mx-auto rounded-full mb-4"></div>
+                <p class="text-gray-600 text-sm md:text-base">深耕海外营销多年，我们更懂您的需求</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="text-center p-6">
+                    <div class="text-primary text-4xl mb-4"><i class="fas fa-shield-alt"></i></div>
+                    <h4 class="font-bold text-gray-900 mb-2">安全可靠</h4>
+                    <p class="text-sm text-gray-600">官方授权渠道，资金专款专用，透明可查，确保投放无忧。</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="text-primary text-4xl mb-4"><i class="fas fa-bolt"></i></div>
+                    <h4 class="font-bold text-gray-900 mb-2">极速响应</h4>
+                    <p class="text-sm text-gray-600">专业顾问1对1对接，开户充值极速处理，不浪费每一分流量时长。</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="text-primary text-4xl mb-4"><i class="fas fa-chart-line"></i></div>
+                    <h4 class="font-bold text-gray-900 mb-2">专业调优</h4>
+                    <p class="text-sm text-gray-600">提供策略建议与数据分析，助力ROI提升，从开户到增长全流程支持。</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="text-primary text-4xl mb-4"><i class="fas fa-globe"></i></div>
+                    <h4 class="font-bold text-gray-900 mb-2">全网覆盖</h4>
+                    <p class="text-sm text-gray-600">横跨搜索、社媒、短视频全媒体，提供一站式跨平台营销解决方案。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cases Section -->
+    <section id="cases" class="py-12 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="text-2xl md:text-4xl font-bold text-gray-900 mb-4">客户案例展示</h2>
+                <div class="w-16 md:w-20 h-1 bg-primary mx-auto rounded-full mb-4"></div>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
+                <div class="case-card rounded-lg md:rounded-xl shadow-md bg-white overflow-hidden border border-gray-200">
+                    <img src="https://i.postimg.cc/C5c2bCjq/4.jpg" alt="[广告投放案例 1]" class="w-full">
+                </div>
+                <div class="case-card rounded-lg md:rounded-xl shadow-md bg-white overflow-hidden border border-gray-200">
+                    <img src="https://i.postimg.cc/J0pFj3bJ/5.jpg" alt="[广告投放案例 2]" class="w-full">
+                </div>
+                <div class="case-card rounded-lg md:rounded-xl shadow-md bg-white overflow-hidden border border-gray-200">
+                    <img src="https://i.postimg.cc/d35fGR8G/8.jpg" alt="[广告投放案例 3]" class="w-full">
+                </div>
+                <div class="case-card rounded-lg md:rounded-xl shadow-md bg-white overflow-hidden border border-gray-200">
+                    <img src="https://i.postimg.cc/sxTL5Pp7/9.jpg" alt="[广告投放案例 4]" class="w-full">
+                </div>
+                <div class="case-card rounded-lg md:rounded-xl shadow-md bg-white overflow-hidden border border-gray-200">
+                    <img src="https://i.postimg.cc/brm510Qx/DM-20251106154504-010.jpg" alt="[广告投放案例 5]" class="w-full">
+                </div>
+                <div class="case-card rounded-lg md:rounded-xl shadow-md bg-white overflow-hidden border border-gray-200">
+                    <img src="https://i.postimg.cc/XqsP9Kwk/DM-20251106154504-011.png" alt="[广告投放案例 6]" class="w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-12 md:py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="text-2xl md:text-4xl font-bold text-gray-900 mb-4">常见问题解答</h2>
+                <div class="w-16 md:w-20 h-1 bg-primary mx-auto rounded-full mb-4"></div>
+                <p class="text-gray-500 text-sm md:text-base">为您解答关于合作与服务的核心疑问</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                <div class="bg-white rounded-xl p-5 md:p-6 border border-gray-100 shadow-sm">
+                    <h4 class="text-base md:text-lg font-bold text-gray-900 mb-2">如何开始使用您的服务？</h4>
+                    <p class="text-sm md:text-base text-gray-600">您可以通过网站上的联系方式联系我们，我们的顾问会详细了解您的需求，并提供专业的解决方案。</p>
+                </div>
+                <div class="bg-white rounded-xl p-5 md:p-6 border border-gray-100 shadow-sm">
+                    <h4 class="text-base md:text-lg font-bold text-gray-900 mb-2">服务费用如何计算？</h4>
+                    <p class="text-sm md:text-base text-gray-600">我们的服务费用根据项目规模、投放平台和具体需求来定制，确保为客户提供最具性价比的解决方案。</p>
+                </div>
+                <div class="bg-white rounded-xl p-5 md:p-6 border border-gray-100 shadow-sm">
+                    <h4 class="text-base md:text-lg font-bold text-gray-900 mb-2">如何保证广告效果？</h4>
+                    <p class="text-sm md:text-base text-gray-600">我们采用数据驱动的优化策略，通过实时监控和定期分析，不断调整优化广告投放策略，确保最佳效果。</p>
+                </div>
+                <div class="bg-white rounded-xl p-5 md:p-6 border border-gray-100 shadow-sm">
+                    <h4 class="text-base md:text-lg font-bold text-gray-900 mb-2">支持哪些支付方式？</h4>
+                    <p class="text-sm md:text-base text-gray-600">我们支持多种支付方式，包括银行转账、U支付等，同时也支持美元、欧元等国际货币结算。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 pt-12 md:pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 mb-12">
+                <!-- Info -->
+                <div class="col-span-1 md:col-span-5">
+                    <div class="flex items-center gap-3 mb-6">
+                        <img class="h-8 w-8 md:h-10 md:w-10 rounded-full object-cover border border-gray-600" src="https://i.postimg.cc/V6xQdWWr/photo-2026-01-16-14-57-36.jpg" alt="启创广告 Logo">
+                        <span class="font-bold text-lg md:text-xl text-white">启创广告</span>
+                    </div>
+                    <p class="text-xs md:text-sm text-gray-400 leading-relaxed mb-4">
+                        深耕出海广告行业，为您提供稳定、高效的全平台账户开户与营销咨询服务，助力企业全球化布局。
+                    </p>
+                    <p class="text-[10px] md:text-xs text-gray-500 leading-relaxed">
+                        <strong>免责声明：</strong> 我们提供开户咨询与技术支持，与官方平台无直接法律从属关系。
+                    </p>
+                </div>
+
+                <!-- Core Services -->
+                <div class="col-span-1 md:col-span-3">
+                    <h4 class="text-white font-bold mb-4 md:mb-6">核心服务</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#services" class="hover:text-primary transition-colors">Google Ads 极速开户</a></li>
+                        <li><a href="#services" class="hover:text-primary transition-colors">Facebook 高权重代理户</a></li>
+                        <li><a href="#services" class="hover:text-primary transition-colors">TikTok 全球开户投放</a></li>
+                        <li><a href="#services" class="hover:text-primary transition-colors">X (Twitter) 品牌推广</a></li>
+                        <li><a href="https://t.me/qichuangads" target="_blank" class="hover:text-primary transition-colors">跨平台营销顾问</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-span-1 md:col-span-4 flex flex-col md:items-end">
+                    <h4 class="text-white font-bold mb-4 md:mb-6">联系方式</h4>
+                    <a href="https://t.me/qichuangads" target="_blank" class="flex items-center text-white hover:text-primary transition-colors text-sm md:text-base">
+                        <i class="fab fa-telegram text-primary mr-3 text-xl"></i> Telegram 在线咨询
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-[10px] md:text-sm text-gray-500">
+                <p>&copy; 2026 启创广告 (QiChuang Ads). 保留所有权利。 本网站内容仅供参考，具体服务以实际沟通为准。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => menu.classList.add('hidden'));
+        });
+
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            // Navbar effect
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('h-16', 'h-14');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('h-14', 'h-16');
+            }
+
+            // Back to top visibility
+            if (window.scrollY > 500) {
+                backToTop.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                backToTop.classList.add('opacity-0', 'pointer-events-none');
+            }
+        });
+    </script>
+</body>
+</html>
